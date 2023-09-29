@@ -1,0 +1,182 @@
+
+#include<iostream.h>
+#include<conio.h>
+#include<stdio.h>
+#include<iomanip.h>
+
+
+class tictactoe
+{
+   private:
+	 int tic[2][2];
+	 int k;
+
+
+  public:
+	     tictactoe();
+	     int check(int p);
+	     void p1();
+	     void p2();
+};
+
+
+void tictactoe::tictactoe()
+  {
+
+      for(int i=0;i<3;i++)
+	 {
+	    for(int j=0;j<3;j++)
+	     {
+		tic[i][j]=0;
+		cout<<tic[i][j];
+	     }
+	    cout<<endl;
+
+	  }
+
+
+  }
+
+
+int tictactoe:: check(int p)
+  {
+	k=0;
+      int n=0,i,j;
+
+//**************CHECK SATR************************
+      for(i=0;i<3;i++)
+	{
+	  n=0;
+	  for  (j=0;j<3;j++)
+	    if(tic[i][j]==p)  n++;
+	  if (n==3)
+	   {
+	     k=1;
+	     //break;
+	   }
+	}
+
+//**************CHECK SOTON************************
+for(i=0;i<3;i++)
+	{
+	  n=0;
+	  for  (j=0;j<3;j++)
+	    if(tic[j][i]==p)  n++;
+	  if (n==3)
+	   {
+	     k=1;
+	     //break;
+	   }
+	}
+
+
+//**************CHECK GHOTR RASLI************************
+
+for(i=0;i<3;i++)
+	{
+	  n=0;
+	  for  (j=0;j<3;j++)
+	    if ((i==j)&&(tic[i][j]==p))  n++;
+	  if (n==3)
+	   {
+	     k=1;
+	     //break;
+	   }
+	}
+
+
+//**************CHECK GHOTR FARe***********************
+
+for(i=0;i<3;i++)
+	{
+	  n=0;
+	  for  (j=0;j<3;j++)
+	    if ((i+j==2)&&(tic[i][j]==p))  n++;
+	  if (n==3)
+	   {
+	     k=1;
+	     //break;
+	   }
+	}
+
+
+
+
+    return k;
+   }
+//////////////////////////////////////////////////////////////////////
+ void tictactoe::p1()
+
+   {
+
+     int r=0,c=0,a=1;
+     cout<<endl<<"ENTER ROW&COLUMN 0-2 P1"<<endl;
+      cin>>r>>c;
+      if (tic[r][c]==0)
+	tic[r][c]=1;
+      else
+	cout<<endl<<"ERROR" <<endl;
+
+
+
+      for(int i=0;i<3;i++)
+	 {
+	    for(int j=0;j<3;j++)
+		cout<<tic[i][j];
+	    cout<<endl;
+
+	  }
+
+     if((check(a))==1)
+     {
+	 cout<<endl<<"     **p1**     "<<endl;
+	 exit(0);
+      }
+  }
+
+
+ void tictactoe::p2()
+
+   {
+
+     int r,c,a=2;
+     cout<<endl<<"ENTER ROW&COLUMN 0-1 P2"<<endl;
+      cin>>r>>c;
+      if (tic[r][c]==0) tic[r][c]=2;
+      else
+      cout<<endl<<"ERROR" <<endl;
+
+
+
+      for(int i=0;i<3;i++)
+	 {
+	    for(int j=0;j<3;j++)
+		cout<<tic[i][j];
+	    cout<<endl;
+
+	  }
+
+     if((check(a))==1)
+     {
+	 cout<<endl<<"     **p2**     "<<endl;
+	 exit(0);
+	 }
+
+  }
+
+
+//************MAIN**************************
+void main()
+{
+
+ tictactoe a;
+
+ for(int i=1;i<10;i++)
+  if (i%2==0)
+   a.p2();
+  else
+   a.p1();
+
+getch();
+
+}
